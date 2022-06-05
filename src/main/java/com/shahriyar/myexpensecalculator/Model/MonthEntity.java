@@ -19,7 +19,6 @@ import java.util.Set;
 public class MonthEntity {
 
     @Id
-    @JsonIgnore
     private Long id;
 
     private Long monthlyDebit;

@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 @EnableJpaRepositories
 public interface ExpenseEntityRepository extends JpaRepository<ExpenseEntity, Long> {
 
+
+
 }
