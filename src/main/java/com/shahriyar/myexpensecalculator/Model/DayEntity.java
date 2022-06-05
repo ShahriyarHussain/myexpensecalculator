@@ -1,14 +1,14 @@
 package com.shahriyar.myexpensecalculator.Model;
 
-import com.shahriyar.myexpensecalculator.DTO.ExpenseDTO;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -18,6 +18,7 @@ import java.util.Set;
 public class DayEntity {
 
     @Id
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
     private Long dailySettlement;

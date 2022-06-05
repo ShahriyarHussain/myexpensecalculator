@@ -1,13 +1,13 @@
 package com.shahriyar.myexpensecalculator.DTO;
 
-import com.shahriyar.myexpensecalculator.Enum.ExpenseCategory;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ExpenseDTO {
 
     private String name;
@@ -19,4 +19,5 @@ public class ExpenseDTO {
     private int amount;
 
     private int quantity;
+
 }

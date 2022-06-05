@@ -1,9 +1,13 @@
 package com.shahriyar.myexpensecalculator.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.shahriyar.myexpensecalculator.DTO.ExpenseDTO;
 import com.shahriyar.myexpensecalculator.Enum.ExpenseCategory;
-import lombok.*;
+import com.shahriyar.myexpensecalculator.Exception.BadDataFormatException;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -16,7 +20,7 @@ public class ExpenseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
     private String name;
@@ -35,7 +39,11 @@ public class ExpenseEntity {
 
     public ExpenseEntity(ExpenseDTO expenseDTO) {
         this.name = expenseDTO.getName();
-        this.category = ExpenseCategory.valueOf(expenseDTO.getCategory());
+        try {
+            this.category = ExpenseCategory.valueOf(expenseDTO.getCategory());
+        } catch (Exception e) {
+            throw new BadDataFormatException(e.getMessage());
+        }
         this.amount = expenseDTO.getAmount();
         this.quantity = expenseDTO.getQuantity();
         this.type = expenseDTO.isType();

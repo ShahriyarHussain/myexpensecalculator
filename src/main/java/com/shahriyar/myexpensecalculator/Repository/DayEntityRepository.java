@@ -1,14 +1,9 @@
 package com.shahriyar.myexpensecalculator.Repository;
 
-import com.shahriyar.myexpensecalculator.Model.ExpenseEntity;
+import com.shahriyar.myexpensecalculator.Model.DayEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Repository;
 
-@Repository
 @EnableJpaRepositories
-public interface ExpenseEntityRepository extends JpaRepository<ExpenseEntity, Long> {
-
-
-
+public interface DayEntityRepository extends JpaRepository<DayEntity, Long> {
 }

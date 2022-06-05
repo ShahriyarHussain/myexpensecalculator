@@ -1,33 +1,42 @@
 package com.shahriyar.myexpensecalculator.Controller;
 
 import com.shahriyar.myexpensecalculator.DTO.ExpenseDTO;
+import com.shahriyar.myexpensecalculator.DTO.GlobalDTO;
 import com.shahriyar.myexpensecalculator.Model.ExpenseEntity;
-import com.shahriyar.myexpensecalculator.Service.ExpenseService;
+import com.shahriyar.myexpensecalculator.Service.ExpenseEntityService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/expense")
 public class ExpenseController {
 
-    private final ExpenseService expenseService;
+    private final ExpenseEntityService expenseEntityService;
 
-    public ExpenseController(ExpenseService expenseService) {
-        this.expenseService = expenseService;
+    public ExpenseController(ExpenseEntityService expenseEntityService) {
+        this.expenseEntityService = expenseEntityService;
     }
 
     @GetMapping("/getexpensebyid/{id}")
     public ResponseEntity<ExpenseEntity> getExpenseById(@PathVariable Long id) {
-        return ResponseEntity.ok(expenseService.getExpenseEntityById(id));
+        return ResponseEntity.ok(expenseEntityService.getExpenseEntityById(id));
     }
 
     @PostMapping("/addexpense")
-    public ResponseEntity<ExpenseEntity> addNewExpense(ExpenseDTO expenseDTO) {
-        return ResponseEntity.ok(expenseService.addNewExpenseEntity(expenseDTO));
+    public ResponseEntity<ExpenseEntity> addNewExpense(@RequestBody ExpenseDTO expenseDTO) {
+        return ResponseEntity.ok(expenseEntityService.addNewExpenseEntity(expenseDTO));
     }
 
-    @PutMapping("/modexpense")
-    public ResponseEntity<ExpenseEntity> modifyExpense(ExpenseDTO expenseDTO, Long id) {
-        return ResponseEntity.ok(expenseService.modifyExpenseEntity(expenseDTO, id));
+    @PutMapping("/modexpense/{id}")
+    public ResponseEntity<ExpenseEntity> modifyExpense(@RequestBody ExpenseDTO expenseDTO, @PathVariable Long id) {
+        return ResponseEntity.ok(expenseEntityService.modifyExpenseEntity(expenseDTO, id));
+    }
+
+    //FOR TESTING PURPOSES ONLY
+    @PostMapping("/addexpense2")
+    public ResponseEntity<String> addExpenseFromGlobalDTO(@RequestBody Map<String, String> expenseDTO) {
+        return ResponseEntity.ok(new GlobalDTO(expenseDTO).toString());
     }
 }

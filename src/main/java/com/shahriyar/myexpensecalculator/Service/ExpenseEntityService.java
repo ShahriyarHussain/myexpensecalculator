@@ -6,16 +6,14 @@ import com.shahriyar.myexpensecalculator.Exception.BadDataFormatException;
 import com.shahriyar.myexpensecalculator.Exception.EntityNotFoundException;
 import com.shahriyar.myexpensecalculator.Model.ExpenseEntity;
 import com.shahriyar.myexpensecalculator.Repository.ExpenseEntityRepository;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 @Service
-public class ExpenseService {
+public class ExpenseEntityService {
 
     private final ExpenseEntityRepository expenseEntityRepository;
 
-    public ExpenseService(ExpenseEntityRepository expenseEntityRepository) {
+    public ExpenseEntityService(ExpenseEntityRepository expenseEntityRepository) {
         this.expenseEntityRepository = expenseEntityRepository;
     }
 
