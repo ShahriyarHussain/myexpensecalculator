@@ -3,20 +3,15 @@ package com.shahriyar.myexpensecalculator.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shahriyar.myexpensecalculator.DTO.ExpenseDTO;
 import com.shahriyar.myexpensecalculator.Enum.ExpenseCategory;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class ExpenseEntity {
 
     @Id
@@ -33,6 +28,10 @@ public class ExpenseEntity {
     private int amount;
 
     private int quantity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "day")
+    private DayEntity day;
 
     public ExpenseEntity(ExpenseDTO expenseDTO) {
         this.name = expenseDTO.getName();

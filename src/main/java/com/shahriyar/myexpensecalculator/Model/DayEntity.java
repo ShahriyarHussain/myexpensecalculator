@@ -1,8 +1,7 @@
 package com.shahriyar.myexpensecalculator.Model;
 
 import com.shahriyar.myexpensecalculator.DTO.ExpenseDTO;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +13,8 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class DayEntity {
 
     @Id
@@ -27,9 +28,11 @@ public class DayEntity {
 
     private Integer dayNumber;
 
-    @ElementCollection
-    private List<Long> dailyExpenses = new LinkedList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ExpenseEntity> dailyExpenses = new LinkedList<>();
 
-    @ManyToOne
-    private MonthEntity month;
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "month")
+    private MonthEntity monthEntity;
+
 }

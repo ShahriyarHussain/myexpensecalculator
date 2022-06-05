@@ -1,13 +1,9 @@
 package com.shahriyar.myexpensecalculator.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +12,8 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class MonthEntity {
 
     @Id
@@ -29,6 +27,6 @@ public class MonthEntity {
 
     private Integer monthNumber;
 
-    @OneToMany(mappedBy = "DayEntity")
-    private Set<DayEntity> dayEntityList;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<DayEntity> dayEntityList;
 }
