@@ -1,7 +1,7 @@
 package com.shahriyar.myexpensecalculator.Controller;
 
+import com.shahriyar.myexpensecalculator.DTO.AllEntityDTO;
 import com.shahriyar.myexpensecalculator.DTO.ExpenseDTO;
-import com.shahriyar.myexpensecalculator.DTO.GlobalDTO;
 import com.shahriyar.myexpensecalculator.Model.ExpenseEntity;
 import com.shahriyar.myexpensecalculator.Service.ExpenseEntityService;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +37,6 @@ public class ExpenseController {
     //FOR TESTING PURPOSES ONLY
     @PostMapping("/addexpense2")
     public ResponseEntity<String> addExpenseFromGlobalDTO(@RequestBody Map<String, String> expenseDTO) {
-        return ResponseEntity.ok(new GlobalDTO(expenseDTO).toString());
+        return ResponseEntity.ok(new AllEntityDTO(expenseDTO).toString());
     }
 }

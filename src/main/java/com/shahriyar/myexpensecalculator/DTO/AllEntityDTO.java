@@ -3,14 +3,23 @@ package com.shahriyar.myexpensecalculator.DTO;
 import com.shahriyar.myexpensecalculator.Enum.ExpenseCategory;
 import com.shahriyar.myexpensecalculator.Exception.BadDataFormatException;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class AllEntityDTO {
 
     private final Map<String, String> dtoMap;
 
+    public AllEntityDTO() {
+        dtoMap = new HashMap<>();
+    }
+
     public AllEntityDTO(Map<String, String> dtoMap) {
         this.dtoMap = dtoMap;
+    }
+
+    public Map<String, String> getDtoMap() {
+        return this.dtoMap;
     }
 
     public String getName() {
