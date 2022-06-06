@@ -1,6 +1,5 @@
 package com.shahriyar.myexpensecalculator.DTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
