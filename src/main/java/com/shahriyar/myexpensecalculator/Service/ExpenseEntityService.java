@@ -1,8 +1,6 @@
 package com.shahriyar.myexpensecalculator.Service;
 
-import com.shahriyar.myexpensecalculator.DTO.ExpenseDTO;
-import com.shahriyar.myexpensecalculator.Enum.ExpenseCategory;
-import com.shahriyar.myexpensecalculator.Exception.BadDataFormatException;
+import com.shahriyar.myexpensecalculator.DTO.AllEntityDTO;
 import com.shahriyar.myexpensecalculator.Exception.EntityNotFoundException;
 import com.shahriyar.myexpensecalculator.Model.ExpenseEntity;
 import com.shahriyar.myexpensecalculator.Repository.ExpenseEntityRepository;
@@ -17,7 +15,7 @@ public class ExpenseEntityService {
         this.expenseEntityRepository = expenseEntityRepository;
     }
 
-    public ExpenseEntity addNewExpenseEntity(ExpenseDTO expenseDTO) {
+    public ExpenseEntity addNewExpenseEntity(AllEntityDTO expenseDTO) {
         return expenseEntityRepository.save(new ExpenseEntity(expenseDTO));
     }
 
@@ -25,15 +23,11 @@ public class ExpenseEntityService {
         return expenseEntityRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
-    public ExpenseEntity modifyExpenseEntity(ExpenseDTO expenseDTO, Long id) {
+    public ExpenseEntity modifyExpenseEntity(AllEntityDTO expenseDTO, Long id) {
         ExpenseEntity expenseEntity = expenseEntityRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         expenseEntity.setAmount(expenseDTO.getAmount());
         expenseEntity.setQuantity(expenseDTO.getQuantity());
-        try {
-            expenseEntity.setCategory(ExpenseCategory.valueOf(expenseDTO.getCategory()));
-        } catch (IllegalArgumentException ex) {
-            throw new BadDataFormatException("Invalid category type");
-        }
+        expenseEntity.setCategory(expenseDTO.getCategory());
         expenseEntity.setName(expenseDTO.getName());
         return expenseEntityRepository.save(expenseEntity);
     }

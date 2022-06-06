@@ -1,9 +1,8 @@
 package com.shahriyar.myexpensecalculator.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.shahriyar.myexpensecalculator.DTO.ExpenseDTO;
+import com.shahriyar.myexpensecalculator.DTO.AllEntityDTO;
 import com.shahriyar.myexpensecalculator.Enum.ExpenseCategory;
-import com.shahriyar.myexpensecalculator.Exception.BadDataFormatException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,25 +26,20 @@ public class ExpenseEntity {
 
     private ExpenseCategory category;
 
-    private boolean type;
+    private Boolean type;
 
-    private int amount;
+    private Integer amount;
 
-    private int quantity;
+    private Integer quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "day")
     private DayEntity day;
 
-    public ExpenseEntity(ExpenseDTO expenseDTO) {
+    public ExpenseEntity(AllEntityDTO expenseDTO) {
         this.name = expenseDTO.getName();
-        try {
-            this.category = ExpenseCategory.valueOf(expenseDTO.getCategory());
-        } catch (Exception e) {
-            throw new BadDataFormatException(e.getMessage());
-        }
+        this.category = expenseDTO.getCategory();
         this.amount = expenseDTO.getAmount();
         this.quantity = expenseDTO.getQuantity();
-        this.type = expenseDTO.isType();
+        this.type = expenseDTO.getType();
     }
 }

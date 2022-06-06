@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Invalid data format provided")
 public class BadDataFormatException extends RuntimeException{
     public BadDataFormatException() {
-        super();
+        super("Invalid data format provided");
     }
 
     public BadDataFormatException(String message) {
