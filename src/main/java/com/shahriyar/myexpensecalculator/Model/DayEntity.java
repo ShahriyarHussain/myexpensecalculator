@@ -1,6 +1,7 @@
 package com.shahriyar.myexpensecalculator.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.shahriyar.myexpensecalculator.DTO.AllEntityDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,5 +36,14 @@ public class DayEntity {
     @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "month")
     private MonthEntity monthEntity;
+
+    public DayEntity(AllEntityDTO monthEntityDTO, Long id, MonthEntity monthEntity) {
+        setId(id);
+        setDailyDebit(monthEntityDTO.getDailyDebit());
+        setDailyCredit(monthEntityDTO.getDailyCredit());
+        setDailySettlement(monthEntityDTO.getDailySettlement());
+        setDayNumber(monthEntityDTO.getDayNumber());
+        setMonthEntity(monthEntity);
+    }
 
 }

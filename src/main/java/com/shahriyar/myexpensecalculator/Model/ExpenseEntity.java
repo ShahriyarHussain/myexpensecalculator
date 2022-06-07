@@ -35,11 +35,12 @@ public class ExpenseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private DayEntity day;
 
-    public ExpenseEntity(AllEntityDTO expenseDTO) {
+    public ExpenseEntity(AllEntityDTO expenseDTO, DayEntity dayEntity) {
         this.name = expenseDTO.getName();
         this.category = expenseDTO.getCategory();
         this.amount = expenseDTO.getAmount();
         this.quantity = expenseDTO.getQuantity();
         this.type = expenseDTO.getType();
+        this.day = dayEntity;
     }
 }
