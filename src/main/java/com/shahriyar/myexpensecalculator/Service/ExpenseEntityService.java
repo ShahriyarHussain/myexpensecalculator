@@ -28,7 +28,7 @@ public class ExpenseEntityService {
         return expenseEntityRepository.save(new ExpenseEntity(expenseDTO, dayEntityService.findDayEntityById(dayId)));
     }
 
-    public ExpenseEntity getExpenseEntityById(Long id) {
+    public ExpenseEntity findExpenseEntityById(Long id) {
         return expenseEntityRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 

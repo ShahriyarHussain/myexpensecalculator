@@ -230,7 +230,7 @@ public class AllEntityDTO {
         }
         long yearlyCredit;
         try {
-            yearlyCredit = Long.parseLong(dtoMap.get("monthlyCredit"));
+            yearlyCredit = Long.parseLong(dtoMap.get("yearlyCredit"));
         } catch (NumberFormatException e) {
             throw new BadDataFormatException(e.getMessage());
         }

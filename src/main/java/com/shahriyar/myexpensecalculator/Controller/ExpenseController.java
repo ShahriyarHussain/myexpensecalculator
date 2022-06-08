@@ -20,7 +20,7 @@ public class ExpenseController {
 
     @GetMapping("/get-expense-by-id/{id}")
     public ResponseEntity<ExpenseEntity> getExpenseById(@PathVariable Long id) {
-        return ResponseEntity.ok(expenseEntityService.getExpenseEntityById(id));
+        return ResponseEntity.ok(expenseEntityService.findExpenseEntityById(id));
     }
 
     @PostMapping("/add-expense")
