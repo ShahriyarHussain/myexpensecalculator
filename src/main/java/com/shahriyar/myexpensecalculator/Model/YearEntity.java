@@ -2,10 +2,7 @@ package com.shahriyar.myexpensecalculator.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.shahriyar.myexpensecalculator.DTO.AllEntityDTO;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -38,6 +35,10 @@ public class YearEntity {
         this.yearlyCredit = yearEntityDTO.getYearlyCredit();
         this.yearlySettlement = yearEntityDTO.getYearlySettlement();
         this.yearNumber = yearEntityDTO.getYearNumber();
+    }
+
+    public void addMonthToYear(MonthEntity monthEntity) {
+        monthEntityList.add(monthEntity);
     }
 
 }

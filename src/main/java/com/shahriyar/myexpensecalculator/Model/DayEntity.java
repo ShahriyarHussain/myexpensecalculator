@@ -34,7 +34,6 @@ public class DayEntity {
     private List<ExpenseEntity> dailyExpenses = new LinkedList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "month")
     private MonthEntity monthEntity;
 
     public DayEntity(AllEntityDTO monthEntityDTO, Long id, MonthEntity monthEntity) {

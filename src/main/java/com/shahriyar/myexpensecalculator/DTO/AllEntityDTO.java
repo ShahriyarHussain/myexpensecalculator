@@ -217,7 +217,7 @@ public class AllEntityDTO {
         }
         long yearlyDebit;
         try {
-            yearlyDebit = Long.parseLong(dtoMap.get("monthlyDebit"));
+            yearlyDebit = Long.parseLong(dtoMap.get("yearlyDebit"));
         } catch (NumberFormatException e) {
             throw new BadDataFormatException(e.getMessage());
         }
@@ -250,10 +250,16 @@ public class AllEntityDTO {
         return yearNumber;
     }
 
+    public Map<String, String> getDTOMap() {
+        return this.dtoMap;
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder("{\n");
-        this.dtoMap.forEach((k,v) -> result.append("\t\"k\" :").append("\"v\"\n"));
+        this.dtoMap.forEach((k,v) ->
+                result.append("\t").append(k).append(" : ").append(v).append(",").append(System.lineSeparator()));
         return result.append("}").toString();
     }
+
 }

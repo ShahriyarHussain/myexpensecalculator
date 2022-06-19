@@ -3,9 +3,11 @@ package com.shahriyar.myexpensecalculator.Controller;
 import com.shahriyar.myexpensecalculator.DTO.AllEntityDTO;
 import com.shahriyar.myexpensecalculator.Model.YearEntity;
 import com.shahriyar.myexpensecalculator.Service.YearEntityService;
+import com.shahriyar.myexpensecalculator.util.IdProducerUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @RestController
@@ -27,9 +29,4 @@ public class YearController {
     public ResponseEntity<YearEntity> addNewExpense(@RequestBody Map<String, String> expenseDTO) {
         return ResponseEntity.ok(yearEntityService.addNewYearEntity(new AllEntityDTO(expenseDTO)));
     }
-
-//    @PutMapping("/mod-expense/{id}")
-//    public ResponseEntity<YearEntity> modifyExpense(@RequestBody Map<String, String> expenseDTO, @PathVariable Long id) {
-//        return ResponseEntity.ok(yearEntityService.modifyYearEntity(new AllEntityDTO(expenseDTO), id));
-//    }
 }

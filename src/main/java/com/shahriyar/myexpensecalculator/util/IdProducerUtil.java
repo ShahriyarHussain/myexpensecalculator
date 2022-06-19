@@ -14,11 +14,11 @@ public class IdProducerUtil {
                 type.equals(YEAR_STRING) ? produceIdForYear() : produceIdForDay();
     }
 
-    private static Long produceIdForMonth() {
+    private static Long produceIdForYear() {
         return Long.parseLong(String.format("%d",localDateTimeObj.getYear()));
     }
 
-    private static Long produceIdForYear() {
+    private static Long produceIdForMonth() {
         return Long.parseLong(String.format("%d%d",localDateTimeObj.getYear(), localDateTimeObj.getMonthValue()));
     }
 

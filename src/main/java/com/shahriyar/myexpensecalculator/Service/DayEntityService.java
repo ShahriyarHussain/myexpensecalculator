@@ -32,7 +32,10 @@ public class DayEntityService {
         if (existsDayById(dayId)) {
             throw new EntityAlreadyExists("The day entity is already added");
         }
-        return dayEntityRepository.save(new DayEntity(dayEntityDTO, dayId, monthEntityService.findMonthEntityById(monthId)));
+        MonthEntity monthEntity = monthEntityService.findMonthEntityById(monthId);
+        DayEntity dayEntity = new DayEntity(dayEntityDTO, dayId, monthEntity);
+//        monthEntityService.addDayToMonthEntity(dayEntity, monthEntity);
+        return dayEntityRepository.save(dayEntity);
     }
 
     public boolean existsDayById(Long id) {
